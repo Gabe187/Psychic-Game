@@ -26,7 +26,7 @@
 <br>
 <p id = "guessesLeft">
 <br>
-<p id = "guessesMade">
+<p id = "guesses">
 
 
 <!-- All of this needs to be moved to the javascript file -->
@@ -39,6 +39,7 @@
 	var guessesMade = [];
 	var guessIndex = 0;
 	var maxGuesses = 9;
+	var randomLetter = "";
 
 
 
@@ -54,17 +55,22 @@ function updateScore () {
 }
 
 function generateRandomLetter() {
-  var randomLetter = "";
-  var possible = "abcdefghijklmnopqrstuvwxyz";
+
+	var possible = "abcdefghijklmnopqrstuvwxyz";
 
     randomLetter = possible.charAt(Math.floor(Math.random() * possible.length));
 
+  //verify a random letter is generated
   console.log(randomLetter);
 }
 
-//function showGuesses () {
+function showGuesses () {
 
-//}
+	for (i = 0; i < guessesMade.length; i++) {
+		document.querySelector("#guesses").innerHTML = guessesMade[i] + ", ";
+	}
+
+}
 
 
 
@@ -74,19 +80,38 @@ function generateRandomLetter() {
 // Calls the function to set the initial game to zero.
 updateScore();
 
-//Generate a random letter for the user to try and guess
+// Generate a random letter for the user to try and guess
 generateRandomLetter();
 
+// Capture a letter from the user
+document.onkeyup = function(event) {
 
-// Remove comment below when ready to complete showGuesses
-//showGuesses();
+	// Determine which key was pressed, make it lowercase, and set it to the userInput variable.
+	var userInput = String.fromCharCode(event.keyCode).toLowerCase();
 
-// Will finish this later.  Focus right now is to capture the keystroke and push it into the array guessesMade
-//document.onkeyup. = function(event) {
+	//for loop to run this for as many guesses as there are or if the use correctly guesses.
+	for (var userGuesses = 0; userGuesses < maxGuesses; userGuesses++) {
+
+			// If they guess the correct answer, increase and update wins counter & start a new game immediately.
+			if (userInput === randomLetter) {
+				wins++;
+				updateScore();
+				generateRandomLetter();	
+			}
+
+			else {
+				guessesLeft--;
+				guessesMade.push(userInput);
+				showGuesses();
+				updateScore();
+
+			}
+
+        }
+
+	}
 
 
-
-//};
 
 
 </script>
