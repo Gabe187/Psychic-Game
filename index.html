@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+	<title>The Psychic Game</title>
+	<link rel="icon" 
+      type="image/jpg" 
+      href="https://s-media-cache-ak0.pinimg.com/originals/c1/98/dd/c198dd44137fd5623b3da170a537bc0e.png">
+
+    <!-- BOOTSRAP, Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<!-- User Display code goes here -->
+<h1>The Psychic Game</h1>
+<br>
+<p>Guess what letter I'm thinking of!</p>
+<br>
+<p id = "wins">
+<br>
+<p id = "losses">
+<br>
+<p id = "guessesLeft">
+<br>
+<p id = "guessesMade">
+
+
+<!-- All of this needs to be moved to the javascript file -->
+
+<script>
+
+// VARIABLES go here
+	var wins = 0;
+	var losses = 0;
+	var guessesMade = [];
+	var guessIndex = 0;
+	var maxGuesses = 9;
+
+
+
+
+// FUNCTIONS go here
+// This function is to update wins, losses, & guesses Left.  It will update after each guess by the user.
+function updateScore () {
+	var guessesLeft = maxGuesses - guessIndex;
+	document.querySelector("#wins").innerHTML = "Wins: " + wins;
+	document.querySelector("#losses").innerHTML = "Losses: " + losses;
+	document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+
+}
+
+function generateRandomLetter() {
+  var randomLetter = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz";
+
+    randomLetter = possible.charAt(Math.floor(Math.random() * possible.length));
+
+  console.log(randomLetter);
+}
+
+//function showGuesses () {
+
+//}
+
+
+
+
+// MAIN PROCESS goes here
+
+// Calls the function to set the initial game to zero.
+updateScore();
+
+//Generate a random letter for the user to try and guess
+generateRandomLetter();
+
+
+// Remove comment below when ready to complete showGuesses
+//showGuesses();
+
+// Will finish this later.  Focus right now is to capture the keystroke and push it into the array guessesMade
+//document.onkeyup. = function(event) {
+
+
+
+//};
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
